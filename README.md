@@ -1,0 +1,2 @@
+# terraform
+basic setup terraform
