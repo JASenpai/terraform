@@ -10,7 +10,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "example"{
-    ami =   "ami-024c80694b5b3e51a"
+    ami =   "ami-0dd655843c87b6930"
     instance_type   =   "t2.micro"
     vpc_security_group_ids = [aws_security_group.instance.id]
  
@@ -26,7 +26,6 @@ resource "aws_instance" "example"{
 }
 
 resource "aws_security_group" "instance" {
-
   name = var.security_group_name
 
   ingress {
@@ -34,5 +33,11 @@ resource "aws_security_group" "instance" {
     to_port     = var.server_port
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
   }
 }
